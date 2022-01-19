@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchCurrencyAPI, fetchExpense, eating } from '../actions/index';
 import Select from './Select';
+import Table from './Table';
 
 class Form extends React.Component {
   constructor(props) {
@@ -115,19 +116,7 @@ class Form extends React.Component {
             Adicionar Despesa
           </button>
         </form>
-        <table>
-          <tr>
-            <th>Descrição</th>
-            <th>Tag</th>
-            <th>Método de pagamento</th>
-            <th>Valor</th>
-            <th>Moeda</th>
-            <th>Câmbio utilizado</th>
-            <th>Valor convertido</th>
-            <th>Moeda de conversão</th>
-            <th>Editar/Excluir</th>
-          </tr>
-        </table>
+        <Table />
       </div>
     );
   }
