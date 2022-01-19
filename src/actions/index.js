@@ -3,6 +3,7 @@ export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 export const SUBMIT_WALLET = 'SUBMIT_WALLET';
 export const ADD_CURRENCIES = 'ADD_CURRENCIES';
 export const ADD_EXPENSES = 'ADD_EXPENSES';
+export const eating = 'Alimentação';
 
 export const actionSubmitLogin = (payload) => ({
   type: SUBMIT_LOGIN,
@@ -50,8 +51,8 @@ export function converted(expenses) {
     return 0;
   }
   const total = expenses.reduce((acumulator, currentValue) => {
-    const taxas = currentValue.exchangeRates[acumulator.currency];
-    return acumulator + Number(currentValue.value) * taxas.ask;
-  });
+    const rates = currentValue.exchangeRates[currentValue.currency];
+    return acumulator + Number(currentValue.value) * rates.ask;
+  }, 0);
   return Math.round(total * 100) / 100;
 }

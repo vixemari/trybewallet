@@ -32,4 +32,5 @@ const mapStateToProps = ({ user, wallet }) => ({
   email: user.email,
   expenses: wallet.expenses,
 });
+
 export default connect(mapStateToProps)(Header);

@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchCurrencyAPI, fetchExpense } from '../actions/index';
-import Input from './Input';
+import { fetchCurrencyAPI, fetchExpense, eating } from '../actions/index';
 import Select from './Select';
 
 class Form extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      value: '',
+      value: 0,
       description: '',
       currency: 'USD',
       method: 'Dinheiro',
-      tag: 'Alimentação',
+      tag: eating,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -24,15 +24,24 @@ class Form extends React.Component {
     fetchCurrency();
   }
 
-  handleChange({ target: { name, value } }) {
-    this.setState({
-      [name]: value,
-    });
+  handleChange({ target }) {
+    const { name, value } = target;
+    this.setState({ [name]: value });
   }
 
-  handleClick() {
-    const { addExpenses } = this.props;
-    addExpenses(this.state);
+  handleClick(event) {
+    event.preventDefault();
+    const { addExpenses, currencyList } = this.props;
+    const { currency, description, method, tag, value } = this.state;
+    const id = currencyList.length;
+    addExpenses({ id, currency, description, method, tag, value });
+    this.setState({
+      value,
+      description,
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: eating,
+    });
   }
 
   render() {
@@ -43,22 +52,30 @@ class Form extends React.Component {
 
     return (
       <form>
-        <Input
-          type="number"
-          name="value"
-          id="value"
-          value={ value }
-          onChange={ this.handleChange }
-          label="Valor"
-        />
-        <Input
-          type="description"
-          name="description"
-          id="description"
-          value={ description }
-          onChange={ this.handleChange }
-          label="Descrição"
-        />
+        <label htmlFor="value-input">
+          Valor:
+          <input
+            data-testid="value-input"
+            id="value-input"
+            name="value"
+            onChange={ this.handleChange }
+            type="number"
+            value={ value }
+          />
+        </label>
+
+        <label htmlFor="description-input">
+          Descrição:
+          <input
+            data-testid="description-input"
+            id="description-input"
+            name="description"
+            onChange={ this.handleChange }
+            type="text"
+            value={ description }
+          />
+        </label>
+
         <Select
           name="currency"
           option={ currencyList }
@@ -100,7 +117,6 @@ const mapDispatchToProps = (dispatch) => ({
   addExpenses: (state) => dispatch(fetchExpense(state)),
   fetchCurrency: () => dispatch(fetchCurrencyAPI()),
 });
-
 const mapStateToProps = (state) => ({
   currencyList: state.wallet.currencies,
 });
