@@ -47,9 +47,6 @@ export function fetchExpense(state) {
 }
 
 export function converted(expenses) {
-  if (expenses.length === 0) {
-    return 0;
-  }
   const total = expenses.reduce((acumulator, currentValue) => {
     const rates = currentValue.exchangeRates[currentValue.currency];
     return acumulator + Number(currentValue.value) * rates.ask;

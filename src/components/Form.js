@@ -9,7 +9,7 @@ class Form extends React.Component {
     super(props);
 
     this.state = {
-      value: 0,
+      value: '',
       description: '',
       currency: 'USD',
       method: 'Dinheiro',
@@ -24,20 +24,31 @@ class Form extends React.Component {
     fetchCurrency();
   }
 
-  handleChange({ target }) {
-    const { name, value } = target;
-    this.setState({ [name]: value });
+  resetstate =() => {
+    this.setState({
+      value: '',
+      currency: 'USD',
+      description: '',
+      method: 'GET',
+      tag: '',
+
+    });
+  }
+
+  handleChange({ target: { name, value } }) {
+    this.setState({
+      [name]: value,
+    });
   }
 
   handleClick(event) {
     event.preventDefault();
-    const { addExpenses, currencyList } = this.props;
+    const { addExpenses } = this.props;
     const { currency, description, method, tag, value } = this.state;
-    const id = currencyList.length;
-    addExpenses({ id, currency, description, method, tag, value });
+    addExpenses({ currency, description, method, tag, value });
     this.setState({
-      value,
-      description,
+      value: 0,
+      description: '',
       currency: 'USD',
       method: 'Dinheiro',
       tag: eating,
@@ -56,19 +67,18 @@ class Form extends React.Component {
           Valor:
           <input
             data-testid="value-input"
-            id="value-input"
+            id="value"
             name="value"
             onChange={ this.handleChange }
-            type="number"
             value={ value }
           />
         </label>
 
         <label htmlFor="description-input">
-          Descrição:
+          Descrição
           <input
             data-testid="description-input"
-            id="description-input"
+            id="description"
             name="description"
             onChange={ this.handleChange }
             type="text"

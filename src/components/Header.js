@@ -26,7 +26,7 @@ class Header extends React.Component {
 }
 Header.propTypes = {
   email: PropTypes.string.isRequired,
-  expenses: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 const mapStateToProps = ({ user, wallet }) => ({
   email: user.email,
