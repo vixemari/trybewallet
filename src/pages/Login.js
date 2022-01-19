@@ -13,7 +13,12 @@ class Login extends React.Component {
       password: '',
       redirect: false,
     };
+    this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleChange({ target: { name, value } }) {
+    this.setState({ [name]: value });
   }
 
   handleClick(event) {
@@ -36,7 +41,7 @@ class Login extends React.Component {
             type="email"
             data-testid="email-input"
             name="email"
-            onChange={ (event) => this.setState({ email: event.target.value }) }
+            onChange={ this.handleChange }
             value={ email }
             placeholder="Email"
           />
@@ -46,7 +51,7 @@ class Login extends React.Component {
             data-testid="password-input"
             name="password"
             value={ password }
-            onChange={ (event) => this.setState({ password: event.target.value }) }
+            onChange={ this.handleChange }
           />
           <button
             type="button"
