@@ -62,58 +62,73 @@ class Form extends React.Component {
     const paymentMethods = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
 
     return (
-      <form>
-        <label htmlFor="value-input">
-          Valor:
-          <input
-            data-testid="value-input"
-            id="value"
-            name="value"
-            onChange={ this.handleChange }
-            value={ value }
-          />
-        </label>
+      <div>
+        <form>
+          <label htmlFor="value-input">
+            Valor:
+            <input
+              data-testid="value-input"
+              id="value"
+              name="value"
+              onChange={ this.handleChange }
+              value={ value }
+            />
+          </label>
 
-        <label htmlFor="description-input">
-          Descrição
-          <input
-            data-testid="description-input"
-            id="description"
-            name="description"
-            onChange={ this.handleChange }
-            type="text"
-            value={ description }
-          />
-        </label>
+          <label htmlFor="description-input">
+            Descrição
+            <input
+              data-testid="description-input"
+              id="description"
+              name="description"
+              onChange={ this.handleChange }
+              type="text"
+              value={ description }
+            />
+          </label>
 
-        <Select
-          name="currency"
-          option={ currencyList }
-          onChange={ this.handleChange }
-          value={ currency }
-          label="Moeda"
-        />
-        <Select
-          name="method"
-          option={ paymentMethods }
-          onChange={ this.handleChange }
-          value={ method }
-          label="Método de pagamento"
-        />
-        <Select
-          name="tag"
-          option={ TAGS }
-          onChange={ this.handleChange }
-          value={ tag }
-          label="Tag"
-        />
-        <button
-          type="button"
-          onClick={ this.handleClick }
-        >
-          Adicionar Despesa
-        </button>
-      </form>
+          <Select
+            name="currency"
+            option={ currencyList }
+            onChange={ this.handleChange }
+            value={ currency }
+            label="Moeda"
+          />
+          <Select
+            name="method"
+            option={ paymentMethods }
+            onChange={ this.handleChange }
+            value={ method }
+            label="Método de pagamento"
+          />
+          <Select
+            name="tag"
+            option={ TAGS }
+            onChange={ this.handleChange }
+            value={ tag }
+            label="Tag"
+          />
+          <button
+            type="button"
+            onClick={ this.handleClick }
+          >
+            Adicionar Despesa
+          </button>
+        </form>
+        <table>
+          <tr>
+            <th>Descrição</th>
+            <th>Tag</th>
+            <th>Método de pagamento</th>
+            <th>Valor</th>
+            <th>Moeda</th>
+            <th>Câmbio utilizado</th>
+            <th>Valor convertido</th>
+            <th>Moeda de conversão</th>
+            <th>Editar/Excluir</th>
+          </tr>
+        </table>
+      </div>
     );
   }
 }
