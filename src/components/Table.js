@@ -2,9 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-// Feito com a ajuda da Rafa.
-// Documentação de auxílio https://www.w3schools.com/html/html_tables.asp
-
 class Table extends React.Component {
   render() {
     const { wallet } = this.props;
