@@ -6,13 +6,15 @@ class Select extends Component {
     const { option = [], onChange, name, label } = this.props;
     return (
       <div>
-        <label htmlFor={ name }>
+        <label className="form-label" htmlFor={ name }>
+          {' '}
           {label}
           <select
             data-testid={ `${name}-input` }
             id={ name }
             name={ name }
             onChange={ onChange }
+            className="form-select form-select-sm form-control"
           >
             { option.map((item) => (
               <option key={ item } value={ item }>{item}</option>

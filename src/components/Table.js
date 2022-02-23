@@ -8,17 +8,17 @@ class Table extends React.Component {
     return (
       <div>
 
-        <table>
+        <table className="table">
           <tr>
-            <th>Descrição</th>
-            <th>Tag</th>
-            <th>Método de pagamento</th>
-            <th>Valor</th>
-            <th>Moeda</th>
-            <th>Câmbio utilizado</th>
-            <th>Valor convertido</th>
-            <th>Moeda de conversão</th>
-            <th>Editar/Excluir</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Tag</th>
+            <th scope="col">Método de pagamento</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Moeda</th>
+            <th scope="col">Câmbio utilizado</th>
+            <th scope="col">Valor convertido</th>
+            <th scope="col">Moeda de conversão</th>
+            <th scope="col">Editar/Excluir</th>
           </tr>
           { wallet.map((value, index) => (
             <tr key={ index }>
@@ -39,6 +39,7 @@ class Table extends React.Component {
                 <button
                   data-testid="delete-btn"
                   type="button"
+                  className="btn btn-danger mx-3"
                 >
                   Excluir
                 </button>
